@@ -17,7 +17,7 @@ for line in sys.stdin:
     # parse the input we got from mapper.py
     len_word, word = line.split('\t', 1)
     total+=1
-print '%s\t%s' % (len_word, total)
+    print '%s\t%s' % (len_word, total)
 
 
 
