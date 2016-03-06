@@ -7,6 +7,7 @@ import sys
 current_word = None
 current_count = 0
 word = None
+total = 0
 
 # input comes from STDIN
 for line in sys.stdin:
@@ -14,8 +15,10 @@ for line in sys.stdin:
     line = line.strip()
 
     # parse the input we got from mapper.py
-    len_word, words = line.split('\t', 1)
-    print len_word,words
+    len_word, word = line.split('\t', 1)
+    total+=1
+print '%s\t%s' % (len_word, total)
+
 
 
     #word, count = line.split('\t', 1)
