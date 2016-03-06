@@ -3,7 +3,7 @@
 import sys
 # import re
 
-list = ["_","~","!","@","#","$","%","^","&","*","(",")","-","=","+","/",">",".","?","|","<",",","`",":","}","[","]",
+my_list = ["_","~","!","@","#","$","%","^","&","*","(",")","-","=","+","/",">",".","?","|","<",",","`",":","}","[","]",
 ";","{","\\"]
 # input comes from STDIN (standard input)
 for line in sys.stdin:
@@ -14,7 +14,7 @@ for line in sys.stdin:
     # increase counters
     for word in words:
         # newWord = re.sub(r'[^\w\s]', '', word)
-        for i in list:
+        for i in my_list:
             word = word.replace( i, "")
         # write the results to STDOUT (standard output);
         # what we output here will be the input for the
