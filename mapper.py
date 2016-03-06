@@ -3,8 +3,7 @@
 import sys
 # import re
 
-#"@","#","$","%","^","&","*","(",")","-","=","+","/",">",".","?","|","<",",","`",":","}","[","]",";","{","\\"
-my_list = ["_","~","!","@","#","$","%","^","&","*","(",")","-","=","+","/",">",".","?","|","<",",","`",":","}","[","]",";","{","\/"]
+my_list = ["_","~","!","'","@","#","$","%","^","&","*","(",")",'"',"-","=","+","/",">",".","?","|","<",",","`",":","}",";","{","\/"]
 # input comes from STDIN (standard input)
 for line in sys.stdin:
     # remove leading and trailing whitespace
@@ -16,9 +15,7 @@ for line in sys.stdin:
     words = line.split()
     
     # increase counters
-    for word in words:
-        # newWord = re.sub(r'[^\w\s]', '', word)
-        
+    for word in words:        
         # write the results to STDOUT (standard output);
         # what we output here will be the input for the
         # Reduce step, i.e. the input for reducer.py
