@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 
 import sys
-import re
+# import re
 
+list = ["_","~","!","@","#","$","%","^","&","*","(",")","-","=","+","/",">",".","?","|","<",",","`",":","}","[","]",
+";","{","\\"]
 # input comes from STDIN (standard input)
 for line in sys.stdin:
     # remove leading and trailing whitespace
@@ -11,12 +13,12 @@ for line in sys.stdin:
     words = line.split()
     # increase counters
     for word in words:
-        newWord = re.sub(r'[^\w\s]', '', word)
-        if newWord.find("_") > 0:
-            newWord = newWord.replace("_","")
+        # newWord = re.sub(r'[^\w\s]', '', word)
+        for i in list:
+            word = word.replace( i, "")
         # write the results to STDOUT (standard output);
         # what we output here will be the input for the
         # Reduce step, i.e. the input for reducer.py
         #
         # tab-delimited; the trivial word count is 1
-        print '%s\t%s' % (newWord , 1)
+        print '%s\t%s' % (word , 1)
