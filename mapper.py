@@ -10,9 +10,11 @@ for line in sys.stdin:
     # remove leading and trailing whitespace
     line = line.strip()
     # split the line into words
-    words = line.split()
     for i in my_list:
-        words = words.replace(i,'')
+        line  = line.replace(i,'')
+
+    words = line.split()
+    
     # increase counters
     for word in words:
         # newWord = re.sub(r'[^\w\s]', '', word)
@@ -22,4 +24,4 @@ for line in sys.stdin:
         # Reduce step, i.e. the input for reducer.py
         #
         # tab-delimited; the trivial word count is 1
-        print '%s\t%s' % (word.strip() , 1)
+        print '%s\t%s' % (word, 1)
