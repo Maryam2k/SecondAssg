@@ -11,11 +11,12 @@ for line in sys.stdin:
     line = line.strip()
     # split the line into words
     words = line.split()
+    for i in my_list:
+        words = words.replace(i,'')
     # increase counters
     for word in words:
         # newWord = re.sub(r'[^\w\s]', '', word)
-        for i in my_list:
-             word = word.replace(i,'')
+        
         # write the results to STDOUT (standard output);
         # what we output here will be the input for the
         # Reduce step, i.e. the input for reducer.py
