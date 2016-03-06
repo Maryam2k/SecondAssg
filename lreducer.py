@@ -7,6 +7,7 @@ import sys
 current_length = None
 current_count = 0
 word = None
+allWords = []
 
 for line in sys.stdin:
     line = line.strip()
@@ -14,13 +15,17 @@ for line in sys.stdin:
     len_word, word = line.split('\t', 1)
     if current_length == len_word:
         current_count += 1
+        allWords.append(word)
+
+
     else:
         if current_length:
-            print '%s\t%s' % (current_length, current_count)
+            # write result to STDOUT
+            print '%s\t%s' % (current_length, allWords)
         current_count = 1
         current_length = len_word
 
 if current_length == len_word:
-    print '%s\t%s' % (current_length, current_count)
+    print '%s\t%s' % (current_length, allWords)
 
 
