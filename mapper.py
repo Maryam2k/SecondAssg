@@ -14,8 +14,8 @@ for line in sys.stdin:
     # increase counters
     for word in words:
         # newWord = re.sub(r'[^\w\s]', '', word)
-        #for i in my_list:
-         #   word = word.replace( i, "")
+        for i in my_list:
+             word = word
         # write the results to STDOUT (standard output);
         # what we output here will be the input for the
         # Reduce step, i.e. the input for reducer.py
