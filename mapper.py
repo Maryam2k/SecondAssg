@@ -11,7 +11,7 @@ for line in sys.stdin:
     # split the line into words
     # for i in my_list:
     #     line  = line.replace(i,'') 
-    new_string = re.sub('[!@#${}.;\d+:,\?+~\]+)\(\[&\"*+\=\'%^/_|-]', ' ', line)
+    new_string = re.sub('[!@#${}.;\d+:,~\]+><)\(\[&\"*+\=\'%^/_|-]', ' ', line)
     new_string.replace("?","")
     words = new_string.split()
     
