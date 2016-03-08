@@ -10,8 +10,8 @@ for line in sys.stdin:
     line = line.strip()
     # split the line into words
     # for i in my_list:
-    #     line  = line.replace(i,'')
-    new_string = re.sub('[^a-zA-Z0-9\n\.]', ' ', line)
+    #     line  = line.replace(i,'') 
+    new_string = re.sub('[^a-zA-Z0-9\n]', ' ', line)
     words = new_string.split()
     
     # increase counters

@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
 from operator import itemgetter
-import sys
-
+import sys,re
 
 current_word = None
 current_count = 0
@@ -13,8 +12,10 @@ for line in sys.stdin:
     # remove leading and trailing whitespace
     line = line.strip()
 
+    # line = re.sub('[^a-zA-Z0-9\n\.]', '', line)
+
     # parse the input we got from mapper.py
-    word, count = line.split('\t', 1)
+    word, count = line.split("\t", 1)
 
     # convert count (currently a string) to int
     try:
