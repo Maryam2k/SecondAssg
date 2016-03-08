@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 
 import sys
-# import re
+import re
 
-my_list = ['_','~',"!","@","#","$","%","^","&","*","(",")",'"',"-","=","+","/",">",".","?","|","<",",",":","}",";","{","\/"]
+# my_list = ["_","~","!","@","#","$","%","^","&","*","(",")",'"',"-","=","+","/",">",".","?","|","<",",",":","}",";","{","\/"]
 # input comes from STDIN (standard input)
 for line in sys.stdin:
     # remove leading and trailing whitespace
     line = line.strip()
     # split the line into words
-    for i in my_list:
-        line  = line.replace(i,"")
-
-    words = line.split()
+    # for i in my_list:
+    #     line  = line.replace(i,'')
+    new_string = re.sub('[^a-zA-Z0-9\n\.]', ' ', line)
+    words = new_string.split()
     
     # increase counters
     for word in words:        
@@ -22,3 +22,4 @@ for line in sys.stdin:
         #
         # tab-delimited; the trivial word count is 1
         print '%s\t%s' % (word, 1)
+
