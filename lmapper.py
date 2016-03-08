@@ -22,4 +22,4 @@ for line in sys.stdin:
 
     words = new_string.split()
     for word in words:    
-        print '%s\t%s' % (len(word), word)
+        print '%s\t%s' % (len(word), 1)
