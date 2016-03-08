@@ -12,8 +12,6 @@ for line in sys.stdin:
     # remove leading and trailing whitespace
     line = line.strip()
 
-    # line = re.sub('[^a-zA-Z0-9\n\.]', '', line)
-
     # parse the input we got from mapper.py
     word, count = line.split("\t", 1)
 
