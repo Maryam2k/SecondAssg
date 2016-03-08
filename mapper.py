@@ -11,8 +11,8 @@ for line in sys.stdin:
     # split the line into words
     # for i in my_list:
     #     line  = line.replace(i,'') 
-    new_string = re.sub('[!@#${}.;\d+:,~\]+>\?<)\(\[&\"*+\=\'%^/_|-]', ' ', line)
-    new_string.replace("?","")
+    # new_string = re.sub('[!@#${}.;:,~\]+>\?<)\(\[&\"*+\=\'%^/_|-]', ' ', line)
+    new_string = re.sun('[^A-Za-z0-9]+'," ", line)
     words = new_string.split()
     
     # increase counters
