@@ -3,14 +3,14 @@
 import sys
 # import re
 
-my_list = ["_","~","!","@","#","$","%","^","&","*","(",")",'"',"-","=","+","/",">",".","?","|","<",",",":","}",";","{","\/"]
+my_list = ['_','~',"!","@","#","$","%","^","&","*","(",")",'"',"-","=","+","/",">",".","?","|","<",",",":","}",";","{","\/"]
 # input comes from STDIN (standard input)
 for line in sys.stdin:
     # remove leading and trailing whitespace
     line = line.strip()
     # split the line into words
     for i in my_list:
-        line  = line.replace(i,'')
+        line  = line.replace(i,"")
 
     words = line.split()
     
