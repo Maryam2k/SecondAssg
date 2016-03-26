@@ -51,6 +51,8 @@ public class KNN {
     // tell Hadoop what mapper and reducer to use
     job.setMapperClass (KNNMapper.class);
     job.setReducerClass (KNNReducer.class);
+    job.setJarByClass(KNNMapper.class);
+
     
     // set the number of reducers
     try {
