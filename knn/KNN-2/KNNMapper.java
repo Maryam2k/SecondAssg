@@ -54,7 +54,20 @@ public class KNNMapper extends Mapper <LongWritable, Text, RecordKey, RecordKey>
   } 
   
   public void map (LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-    // your code goes here!  
+    
+    // process the next data point
+    String cur = value.toString();
+    VectorizedObject temp = new VectorizedObject (cur);
+    
+    // now, compare it with each of the points we are trying to classify to get the distance 
+    for (VectorizedObject i : pointsToClassify) {
+      
+      // and write the name of the point we are trying to classify, the distance, and the label
+      RecordKey keyOut = new RecordKey (i.getKey (), i.getLocation ().distance (temp.getLocation ()));
+      RecordKey valueOut = new RecordKey (temp.getValue (), i.getLocation ().distance (temp.getLocation ()));
+      context.write (keyOut, valueOut);
+    }
+    
   }
   
 }
