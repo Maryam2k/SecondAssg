@@ -3,94 +3,89 @@ from operator import itemgetter
 import sys,re
 import math
 import operator
-current_key = None
-value_splitted = [0,0,0]
-train_list=[]
-class_freq=[0]*10
-k=3
 
+
+
+# key is test data ,Value is predicted label
 # input comes from STDIN
+
+#test_record = [1*784]
+#train_list = [(1*784,label),...]
+#This function updates the train_list to [(1*784,label, distance),..] where
+#distance is the distance to the test data
+def classify(test_record, train_list):
+
+    distances = []
+    class_freq = [0]*10
+    #computing distances and store them into the list distances
+    for train_record in train_list:
+        distance = 0
+        for i in range(0,attribute_count):
+            distance += math.pow(int(test_record[i]) - int(train_record[i]), 2)
+        distance = round(math.sqrt(distance),2)
+        distances.append(distance)
+
+    # join the training_list and distances    
+    for index in range(0,len(train_list)):
+        train_list[index].append(distances[index])
+
+    #sort the training records based on distance 0:783(attributes),784(class), 785(distance) 
+    train_list = sorted(train_list, key=operator.itemgetter(attribute_count+1))  
+
+    #the closest 
+    train_list = train_list[0:k]
+    # k is the number of nearest neghbor
+    
+    # find the majority class
+    for i in range(0,len(train_list)):
+        # label of the ith training record from k closset one=
+        # int(train_list[i][attribute_count])
+        class_freq[int(train_list[i][attribute_count])] +=1/float(train_list[i][attribute_count+1])
+
+
+    max_value = max(class_freq)
+    max_index = class_freq.index(max_value)
+
+    return max_index
+
+
+train_list = []
+prior_test_record = None
+test_record = None
+train_record = None
+k=4
+attribute_count = 784
+
 for line in sys.stdin:
 
     # remove leading and trailing whitespace
     line = line.strip()
 
     # parse the input we got from mapper.py
-    key, value = line.split("\t", 1)
-    value_splitted = value.split(",")
+    test_record, train_record = line.split("\t", 1)
+    train_record_splitted = train_record.split(' ')
+    test_record_splitted= test_record.rstrip().split(' ')      
 
 
-    if current_key == None: #first-line
-        current_key = key
+    if prior_test_record == None: #first-line
+        prior_test_record = test_record
 
-
-    if current_key == key:
-        train_list.append(value_splitted)
+    if prior_test_record == test_record:
+        train_list.append(train_record_splitted)
 
     else:
-        distances = []
-        key_splitted = current_key.split(",")
 
-        #compute distances for each training record
-        for item in train_list:
-            distance = math.sqrt((int(key_splitted[0]) - int(item[0]))**2+ (int(key_splitted[1]) - int(item[1]))**2)
-            distances.append(round(distance,2))
+        predicted_label = classify(test_record_splitted[0:attribute_count], train_list)
+        actual_label = test_record_splitted[attribute_count]
+        print '%s\t%s' % (actual_label,predicted_label) 
 
-        # join the training_list and distances    
-        for item in range(0,len(train_list)):
-            train_list[item].append(distances[item])
-
-        train_list = sorted(train_list, key=operator.itemgetter(3),reverse =False)  
-        train_list = train_list[0:k]
-        
-
-        for i in range(0,len(train_list)):
-            class_freq[int(train_list[i][2])] = class_freq[int(train_list[i][2])]+1
-
-        
-        max_num = 0
-        max_index = 0
-        for i in range(0,len(class_freq)):
-            if class_freq[i]>max_num:
-                max_num = class_freq[i]
-                max_index = i
-            
-        print '%s\t%s' % (current_key, max_index)
-
-
-
-        class_freq= [0]*10    
         train_list = []
-        current_key=key
-        distances = []
-        train_list.append(value_splitted)
-    # print train_list
+        #print '%s\t%s' % (prior_test_record,predicted_label)
+        prior_test_record = test_record
 
 
-distances = []
-key_splitted = current_key.split(",")
-
-for item in train_list:
-    distance = math.sqrt((int(key_splitted[0]) - int(item[0]))**2+ (int(key_splitted[1]) - int(item[1]))**2)
-    distances.append(round(distance,2))
-
-for item in range(0,len(train_list)):
-    train_list[item].append(distances[item])
-
-train_list = sorted(train_list, key=operator.itemgetter(3),reverse =False)  
-train_list = train_list[0:k]
-
-for i in range(0,len(train_list)):
-            class_freq[int(train_list[i][2])] = class_freq[int(train_list[i][2])]+1
-
-max_num = 0
-max_index = 0
-for i in range(0,len(class_freq)):
-    if class_freq[i]>max_num:
-        max_num = class_freq[i]
-        max_index = i
-
-print '%s\t%s' % (current_key, max_index)
-
-
+test_record_splitted= test_record.rstrip().split(' ')      
+predicted_label = classify(test_record_splitted[0:attribute_count], train_list)
+actual_label = test_record_splitted[attribute_count]
+print '%s\t%s' % (actual_label,predicted_label)
 
