@@ -3,15 +3,10 @@
 import sys
 import re
 
-# my_list = ["_","~","!","@","#","$","%","^","&","*","(",")",'"',"-","=","+","/",">",".","?","|","<",",",":","}",";","{","\/"]
-# input comes from STDIN (standard input)
 for line in sys.stdin:
     # remove leading and trailing whitespace
     line = line.strip()
     # split the line into words
-    # for i in my_list:
-    #     line  = line.replace(i,'') 
-    # new_string = re.sub('[!@#${}.;:,~\]+>\?<)\(\[&\"*+\=\'%^/_|-]', ' ', line)
     new_string = re.sub('[^A-Za-z0-9]+',' ', line)
     words = new_string.split()
     
