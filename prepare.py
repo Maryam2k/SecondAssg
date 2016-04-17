@@ -1,4 +1,5 @@
 import os
+import sys
 
 ftrain = open("image_training_full.txt", 'r')
 # 784 bif for each pic in each row + 1 integer that represents the value of the image
