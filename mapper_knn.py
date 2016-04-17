@@ -1,20 +1,29 @@
-#!/usr/bin/env python
-
+ #!/usr/bin/python
+ 
 import sys
 import re
+import os
 
+attribute_count = 785 
+#in mapper key is a test data. Value is traing data+it's label
 for line in sys.stdin:
+    #print os.environ["map.input.file"]
+
     # remove leading and trailing whitespace
     line = line.strip()
     # split the line into words
-    # words = line.split()
-    input_key = line[0:3]
-    # increase counters
-    # for word in line:        
-        # write the results to STDOUT (standard output);
-        # what we output here will be the input for the
-        # Reduce step, i.e. the input for reducer.py
-        #
-        # tab-delimited; the trivial word count is 1
-    print '%s\t%s' % (input_key, line[4:])
+    line = line.split()
+    input_key = ' '.join(line[0:attribute_count])
+    input_value = ' '.join(line[attribute_count:])
+
+    print '%s\t%s' % (input_key, input_value)
+
+
+
+#small file
+# cat  /Users/mrym/Dropbox/mehrdad/image_combined.txt | python /Users/mrym/Desktop/bigData/SecondAssg/mapper_knn.py |sort -k1,1 | python /Users/mrym/Desktop/bigData/SecondAssg/reducer_knn.py
+
+#large file
+#cat  /Users/mrym/Desktop/image_full_combined_small.txt | python /Users/mrym/Desktop/bigData/SecondAssg/mapper_knn.py |sort -k1,1 | python /Users/mrym/Desktop/bigData/SecondAssg/reducer_knn.py
+
 

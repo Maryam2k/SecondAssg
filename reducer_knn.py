@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/python
+
 from operator import itemgetter
 import sys,re
 import math
