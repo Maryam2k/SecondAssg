@@ -51,7 +51,7 @@ train_list = []
 prior_test_record = None
 test_record = None
 train_record = None
-k=8
+k=12
 attribute_count = 784 
 
 for line in sys.stdin:
