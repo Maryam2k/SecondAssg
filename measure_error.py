@@ -1,4 +1,4 @@
-f = open('/Users/mrym/mehrdad100-1000.txt', 'r')
+f = open('myoutput.txt', 'r')
 
 lines = f.readlines()
 
